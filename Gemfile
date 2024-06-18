@@ -20,12 +20,12 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails"
   gem "pry-rails"
+  gem "faker"
 end
 
 group :development do
   gem "web-console"
   gem "annotate"
-  gem "faker"
 end
 
 group :test do
@@ -37,6 +37,7 @@ group :test do
   gem "rspec-its"
   gem "shoulda"
   gem "simplecov", require: false
+  gem 'rails-controller-testing'
 end
 
 # Use Redis for Action Cable

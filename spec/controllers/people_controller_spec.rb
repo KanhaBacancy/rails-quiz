@@ -2,10 +2,22 @@ require 'rails_helper'
 
 RSpec.describe PeopleController, type: :controller do
   subject { response }
-  describe 'GET index' do
-    before { get :index }
+  describe "GET #index" do
+    let(:company) { create(:company) }
+    let(:person) { create(:person, company: company) }
 
-    it { is_expected.to have_http_status(:ok) }
+    it "assigns @people including associated companies" do
+      get :index
+
+      expect(assigns(:people)).to eq([person])  
+
+      expect(assigns(:people).first.company).to eq(company)
+    end
+
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template("index")
+    end
   end
 
   describe 'GET new' do
