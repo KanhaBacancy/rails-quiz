@@ -16,11 +16,12 @@ RSpec.describe PeopleController, type: :controller do
 
   describe 'POST create' do
     it 'Creates a record' do
-      expect{ post :create, params: { person: { name: 'foo', phone_number: '123', email: 'foo' } } }.to change{ Person.count }.by(1)
+      expect{ post :create, params: { person: { name: 'foo', phone_number: '123', email: 'foo@bar.com' } } }.to change{ Person.count }.by(1)
     end
 
-    it 'has status found' do
-      expect(post :create, params: { person: { name: 'foo', phone_number: '123', email: 'foo' } }).to have_http_status(:found)
+    it 'does not create a record when email is invalid' do
+      post :create, params: { person: { name: 'foo', phone_number: '123', email: 'invalid_email' } }
+      expect(assigns(:person).errors[:email]).to include("is invalid")
     end
   end
 end
