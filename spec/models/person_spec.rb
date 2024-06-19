@@ -14,6 +14,7 @@
 require 'rails_helper'
 
 RSpec.describe Person, type: :model do
+  it { is_expected.to belong_to(:company).optional }
   subject { described_class.new(name: 'John Doe', phone_number: '1234567890', email: 'john.doe@example.com', email_confirmation: 'john.doe@example.com') }
 
   it 'is valid with valid attributes' do
