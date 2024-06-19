@@ -1,0 +1,16 @@
+= form_for(@company, html: { class: 'needs-validation', novalidate: true }) do |form|
+  - if @company.errors.any?
+    .alert.alert-danger
+      h4.alert-heading
+        = pluralize(@company.errors.count, "error")
+        |  prohibited this company from being saved:
+      ul
+        - @company.errors.full_messages.each do |message|
+          li = message
+
+  .form-group
+    = form.label :name, class: 'form-label'
+    = form.text_field :name, class: 'form-control'
+
+  .actions
+    = form.submit 'Save', class: 'btn btn-primary mt-3 mr-2'

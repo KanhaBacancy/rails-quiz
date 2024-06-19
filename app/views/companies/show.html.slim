@@ -1,0 +1,7 @@
+.card
+  .card-body
+    h5.card-title
+      strong Name:
+    p.card-text= @company.name
+    = link_to 'Edit', edit_company_path(@company), class: 'btn btn-primary mr-2'
+    = link_to 'Back', companies_path, class: 'btn btn-secondary'
