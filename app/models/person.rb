@@ -14,4 +14,7 @@
 class Person < ApplicationRecord
   
   belongs_to :company, optional: true
+
+  attr_accessor :email_confirmation
+  validates :email, presence: true, uniqueness: true, confirmation: { case_sensitive: false }
 end
