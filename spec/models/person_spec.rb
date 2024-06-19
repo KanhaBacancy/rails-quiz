@@ -14,5 +14,5 @@
 require 'rails_helper'
 
 RSpec.describe Person, type: :model do
-  it { is_expected.to belong_to(:company).optional }
+  it { is_expected.to have_and_belong_to_many(:companies) }
 end

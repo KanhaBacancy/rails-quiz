@@ -8,10 +8,26 @@ RSpec.describe PeopleController, type: :controller do
     it { is_expected.to have_http_status(:ok) }
   end
 
-  describe 'GET new' do
-    before { get :new }
+  describe 'GET #new' do
+    before do
+      get :new
+    end
 
-    it { is_expected.to have_http_status(:ok) }
+    it 'responds successfully' do
+      expect(response).to be_successful
+    end
+
+    it 'returns a 200 response' do
+      expect(response).to have_http_status '200'
+    end
+
+    it 'creates a new Person instance' do
+      expect(controller.instance_variable_get(:@person)).to be_a_new(Person)
+    end
+
+    it 'loads all of the companies into @companies' do
+      expect(controller.instance_variable_get(:@companies)).to eq(Company.all)
+    end
   end
 
   describe 'POST create' do
