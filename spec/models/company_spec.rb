@@ -11,5 +11,13 @@
 require 'rails_helper'
 
 RSpec.describe Company, type: :model do
-  it { is_expected.to have_many :people }
+  it "is valid with valid attributes" do
+    company = Company.new(name: "Test Company")
+    expect(company).to be_valid
+  end
+
+  it "is not valid without a name" do
+    company = Company.new(name: nil)
+    expect(company).to_not be_valid
+  end
 end
