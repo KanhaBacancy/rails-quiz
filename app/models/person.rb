@@ -14,4 +14,6 @@
 class Person < ApplicationRecord
   
   belongs_to :company, optional: true
+
+  scope :by_email, -> (email) { where(email: email) if email.present? }
 end
