@@ -9,5 +9,8 @@
 #
 
 class Company < ApplicationRecord
+
   has_many :people
+
+  scope :by_name, -> (name) { where('LOWER(name) LIKE ?', "%#{name.downcase}%") if name.present? }
 end
